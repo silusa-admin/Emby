@@ -1,0 +1,20 @@
+apt install openssh-client nano libsqlite3-dev ffmpeg bash-completion p7zip p7zip-full p7zip-rar
+
+dpkg-deb -xv referenceassemblies-pcl_2014-04-14.deb /
+	apt install referenceassemblies-pcl_2014-04-14.deb
+		or
+	dpkg -i --ignore-depends=mono-xbuild /root/referenceassemblies-pcl_2014-04-14.deb
+
+git clone git://github.com/MediaBrowser/Emby
+  or
+git clone git://github.com/silusa-admin/Emby
+
+cd Emby
+
+mozroots --import --sync
+
+xbuild /p:Configuration='Release Mono' /p:Platform='Any CPU' MediaBrowser.sln
+
+cd MediaBrowser.Server.Mono/bin/Release/
+
+mono MediaBrowser.Server.Mono.exe
